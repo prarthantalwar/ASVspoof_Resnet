@@ -1,0 +1,73 @@
+t-DCF evaluation from [Nbona=7355, Nspoof=63882] trials
+
+   tDCF_norm(s) =  2.40595 x Pmiss_cm(s) + Pfa_cm(s)
+
+EER: 0.09597364796339852
+Min tDCF: 0.2436006447762777
+
+
+
+
+
+
+
+
+
+Individual attack scores:
+
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.84359 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.89288 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  7.69295 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.90612 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.89927 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.88771 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.86927 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.83494 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.84095 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  1.84322 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) = 26.21882 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  8.85143 x Pmiss_cm(s) + Pfa_cm(s)
+
+t-DCF evaluation from [Nbona=7355, Nspoof=4914] trials
+
+   tDCF_norm(s) =  3.27974 x Pmiss_cm(s) + Pfa_cm(s)
+
+EERs for individual attacks: [0.00016973106707980943, 0.000577174166569136, 0.006281377559419708, 0.08345785442998224, 0.014905663614025273, 0.12698628511001048, 0.10318485427254973, 0.03911453755097535, 0.11924486621971327, 0.0008148861989786531, 0.2800489285873379, 0.12267414208270769, 0.0012223292984679798]
+Min tDCFs for individual attacks: [0.0002035002035002035, 0.001328718949845795, 0.02610054652901649, 0.2169088607029931, 0.03916988839568424, 0.33103444847189634, 0.2522598606363537, 0.10100732295071985, 0.30427729308051005, 0.001722215786157914, 0.9920634920634921, 0.6233666457530513, 0.003498423158885165]
+
