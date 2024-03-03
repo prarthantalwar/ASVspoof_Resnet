@@ -17,15 +17,15 @@ def test_model(feat_model_path, loss_model_path, part, add_loss, device):
         dir_path = dirname(dirname(feat_model_path))
     else:
         dir_path = dirname(feat_model_path)
-    #model = torch.load(feat_model_path, map_location="cpu")
-    #model = model.to(device)
-    #loss_model = torch.load(loss_model_path) if add_loss != "softmax" else None
-    #test_set = ASVspoof2019("LA", "/media/serb-s2st/PortableSSD/Resnet/Features/",
-    #                        "/home/serb-s2st/workspace/matlab/PRT_SFF_Files/ASVspoof2019_root/LA/ASVspoof2019_LA_cm_protocols/", part,
-    #                        "SFFCC", feat_len=750, padding="repeat")
-    #testDataLoader = DataLoader(test_set, batch_size=128, shuffle=False, num_workers=0,
-    #                            collate_fn=test_set.collate_fn)
-    #model.eval()
+    model = torch.load(feat_model_path, map_location="cpu")
+    model = model.to(device)
+    loss_model = torch.load(loss_model_path) if add_loss != "softmax" else None
+    test_set = ASVspoof2019("LA", "/media/serb-s2st/PortableSSD/Resnet/Features/",
+                            "/home/serb-s2st/workspace/matlab/PRT_SFF_Files/ASVspoof2019_root/LA/ASVspoof2019_LA_cm_protocols/", part,
+                            "SFFCC", feat_len=750, padding="repeat")
+    testDataLoader = DataLoader(test_set, batch_size=128, shuffle=False, num_workers=0,
+                                collate_fn=test_set.collate_fn)
+    model.eval()
 
     #with open(os.path.join(dir_path, 'checkpoint_cm_score.txt'), 'w') as cm_score_file:
     #    for i, (sffcc, audio_fn, tags, labels) in enumerate(tqdm(testDataLoader)):
@@ -48,7 +48,14 @@ def test_model(feat_model_path, loss_model_path, part, add_loss, device):
      #               '%s A%02d %s %s\n' % (audio_fn[j], tags[j].data,
      #                                     "spoof" if labels[j].data.cpu().numpy() else "bonafide",
      #                                     score[j].item()))
+    batch_x = next(iter(testDataLoader))
+      # From the dataloader, pass only the 130 files on which evaluation is to be done
+    _, batch_out = model(batch_x[0].cuda())
 
+    pred_values = F.softmax(batch_out, dim=1)
+    print(pred_values)
+    _, batch_pred = batch_out.max(dim=1)
+    print(batch_pred)
     eer_cm, min_tDCF = compute_eer_and_tdcf(os.path.join(dir_path, 'checkpoint_cm_score.txt'),
                                             "/home/serb-s2st/workspace/matlab/PRT_SFF_Files/ASVspoof2019_root/")
     return eer_cm, min_tDCF
@@ -57,7 +64,7 @@ def test(model_dir, add_loss, device):
     model_path = os.path.join(model_dir, "anti-spoofing_sffcc_model.pt")
     loss_model_path = os.path.join(model_dir, "anti-spoofing_loss_model.pt")
     test_model(model_path, loss_model_path, "eval", add_loss, device)
-
+'''
 def test_individual_attacks(cm_score_file):
     asv_score_file = os.path.join('/home/serb-s2st/workspace/matlab/PRT_SFF_Files/ASVspoof2019_root/',
                                   'LA/ASVspoof2019_LA_asv_scores/ASVspoof2019.LA.asv.eval.gi.trl.scores.txt')
@@ -127,7 +134,7 @@ def test_individual_attacks(cm_score_file):
         min_tDCF_lst.append(min_tDCF)
 
     return eer_cm_lst, min_tDCF_lst
-
+'''
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
@@ -140,6 +147,6 @@ if __name__ == "__main__":
     #args.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     args.device = torch.device("cpu")
     test(args.model_dir, args.loss, args.device)
-    eer_cm_lst, min_tDCF_lst = test_individual_attacks(os.path.join(args.model_dir, 'checkpoint_cm_score.txt'))
-    print(eer_cm_lst)
-    print(min_tDCF_lst)
+    #eer_cm_lst, min_tDCF_lst = test_individual_attacks(os.path.join(args.model_dir, 'checkpoint_cm_score.txt'))
+    #print(eer_cm_lst)
+    #print(min_tDCF_lst)
